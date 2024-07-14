@@ -1,65 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Age Calculator</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Age Calculator & Quote Generator</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <div class="calculator">
-            <h1><span>Age Calculator</span></h1>
-            <div class="input-box">
-                <input type="date" id="date">
-                <button onclick="calculateAge()">Calculate</button>
+        <div class="half">
+            <div class="calculator">
+                <h1 class="title"><span>Age Calculator</span></h1>
+                <div class="input-box">
+                    <input type="date" id="date">
+                    <button onclick="calculateAge()">Calculate</button>
+                </div>
+                <p id="result"></p>
             </div>
-            <p id="result"></p>
+        </div>
+        <div class="half">
+            <div class="quote-generator">
+                <h1 class="title">Random Quote Generator</h1>
+                <div id="quote-box">
+                    <p id="quote" class="quote-text">Click the button to get a new quote!</p>
+                    <p id="author" class="quote-author"></p>
+                </div>
+                <button id="new-quote">New Quote</button>
+            </div>
         </div>
     </div>
     <script>
+        // Age Calculator
         let userInput = document.getElementById("date");
         userInput.max = new Date().toISOString().split("T")[0];
         let result = document.getElementById("result");
 
         function calculateAge() {
             let birthdate = new Date(userInput.value);
-            let d1 = birthdate.getDate();
-            let m1 = birthdate.getMonth() + 1;
-            let y1 = birthdate.getFullYear();
-
+            if (!birthdate.getTime()) {
+                result.innerHTML = "Please select a valid date.";
+                return;
+            }
             let today = new Date();
-            let d2 = today.getDate();
-            let m2 = today.getMonth() + 1;
-            let y2 = today.getFullYear();
-
-            let d3, m3, y3;
-
-            y3 = y2 - y1;
-            if (m2 >= m1) {
-                m3 = m2 - m1;
-            } else {
-                y3--;
-                m3 = 12 + m2 - m1;
+            let age = today.getFullYear() - birthdate.getFullYear();
+            let m = today.getMonth() - birthdate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthdate.getDate())) {
+                age--;
             }
 
-            if (d2 >= d1) {
-                d3 = d2 - d1;
-            } else {
-                m3--;
-                d3 = getDaysInMonth(y1, m1) + d2 - d1;
-            }
+            let months = (today.getFullYear() - birthdate.getFullYear()) * 12 + today.getMonth() - birthdate.getMonth();
+            let days = Math.floor((today - birthdate) / (1000 * 60 * 60 * 24));
 
-            if (m3 < 0) {
-                m3 = 11;
-                y3--;
-            }
-
-            result.innerHTML = `You are <span> ${y3} </span> years, <span>${m3}</span> months and <span>${d3}</span>days old.`;
+            result.innerHTML = `You are <span>${age}</span> years, <span>${months % 12}</span> months and <span>${days % 30}</span> days old.`;
         }
 
-        function getDaysInMonth(year, month) {
-            return new Date(year, month, 0).getDate();
-        }
+        // Quote Generator
+        const quotes = [
+            { quote: "The greatest glory in living lies not in never falling, but in rising every time we fall.", author: "Nelson Mandela" },
+            { quote: "The way to get started is to quit talking and begin doing.", author: "Walt Disney" },
+            { quote: "Your time is limited, so don't waste it living someone else's life.", author: "Steve Jobs" },
+            { quote: "If life were predictable it would cease to be life, and be without flavor.", author: "Eleanor Roosevelt" },
+            { quote: "If you look at what you have in life, you'll always have more. If you look at what you don't have in life, you'll never have enough.", author: "Oprah Winfrey" },
+            { quote: "If you set your goals ridiculously high and it's a failure, you will fail above everyone else's success.", author: "James Cameron" },
+            { quote: "Life is what happens when you're busy making other plans.", author: "John Lennon" },
+            { quote: "Don't watch the clock; do what it does. Keep going.", author: "Sam Levenson" },
+            { quote: "Keep your face always toward the sunshine—and shadows will fall behind you.", author: "Walt Whitman" },
+            { quote: "It is always the simple that produces the marvelous.", author: "Amelia Barr" },
+            { quote: "The world is full of magical things patiently waiting for our wits to grow sharper.", author: "Bertrand Russell" },
+            { quote: "Let us make our future now, and let us make our dreams tomorrow's reality.", author: "Malala Yousafzai" },
+            { quote: "All you need is the plan, the road map, and the courage to press on to your destination.", author: "Earl Nightingale" },
+            { quote: "The glow of one warm thought is to me worth more than money.", author: "Thomas Jefferson" },
+            { quote: "Once you replace negative thoughts with positive ones, you'll start having positive results.", author: "Willie Nelson" },
+            { quote: "Every moment is a fresh beginning.", author: "T.S. Eliot" },
+            { quote: "Without hard work, nothing grows but weeds.", author: "Gordon B. Hinckley" },
+            { quote: "We can do anything we want to if we stick to it long enough.", author: "Helen Keller" },
+            { quote: "Every great dream begins with a dreamer.", author: "Harriet Tubman" },
+            { quote: "The best way to predict the future is to create it.", author: "Peter Drucker" },
+            { quote: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
+            { quote: "Your present circumstances don't determine where you can go; they merely determine where you start.", author: "Nido Qubein" },
+            { quote: "Start where you are. Use what you have. Do what you can.", author: "Arthur Ashe" },
+            { quote: "You are never too old to set another goal or to dream a new dream.", author: "C.S. Lewis" },
+            { quote: "Success is not final, failure is not fatal: It is the courage to continue that counts.", author: "Winston Churchill" },
+            { quote: "Hardships often prepare ordinary people for an extraordinary destiny.", author: "C.S. Lewis" },
+            { quote: "Keep your eyes on the stars, and your feet on the ground.", author: "Theodore Roosevelt" }
+        ];
+
+        document.getElementById('new-quote').addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            document.getElementById('quote').innerText = quotes[randomIndex].quote;
+            document.getElementById('author').innerText = `- ${quotes[randomIndex].author}`;
+        });
     </script>
 </body>
 </html>
