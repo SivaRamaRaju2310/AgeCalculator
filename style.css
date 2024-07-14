@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #2b2b2b; /* Dark background color */
+    background-color: #333333; /* Dark background color */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,7 +20,7 @@ body {
     max-width: 1200px;
     height: 90vh;
     background-color: #444444; /* Slightly lighter dark color */
-    color: #e6e6e6; /* Light text color */
+    color: #f2f2f2; /* Light text color */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -41,100 +41,71 @@ body {
 }
 
 .title {
-    font-size: 2.5em;
-    color: #7963f4; /* Accent color */
-    text-align: center;
+    font-size: 36px;
     margin-bottom: 20px;
+    color: #f2f2f2; /* Matching color for both titles */
 }
 
-.input-box {
+.input-box, #quote-box {
     margin: 20px 0;
     padding: 20px;
     border-radius: 10px;
-    background: rgba(121, 99, 244, 0.2); /* Transparent accent color background */
+    background: #555555; /* Lighter dark color for input and quote boxes */
     display: flex;
     align-items: center;
+    flex-direction: column;
 }
 
-.input-box input {
+.input-box input, #quote-box p {
     flex: 1;
-    margin-right: 20px;
+    margin-bottom: 20px;
     padding: 14px 20px;
-    border: 0;
+    border: 1px solid #7963f4;
     outline: 0;
     font-size: 18px;
     border-radius: 5px;
-    position: relative;
+    width: 100%;
+    color: #333333;
+    background-color: #f2f2f2;
 }
 
-.input-box button {
+.input-box input::-webkit-calendar-picker-indicator {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.input-box button, #new-quote {
     background: #7963f4;
     border: 0;
     outline: 0;
     padding: 15px 30px;
     border-radius: 5px;
     font-weight: 500;
-    color: #333;
+    color: #333333;
     cursor: pointer;
-}
-
-.input-box input::-webkit-calendar-picker-indicator {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: auto;
-    height: auto;
-    position: absolute;
-    background-position: calc(100% - 10px);
-    background-size: 30px;
-    cursor: pointer;
+    width: 100%;
 }
 
 #result {
-    font-size: 1.5em;
-    margin-top: 10px;
-    text-align: center;
-    font-family: 'Courier New', Courier, monospace; /* Different font for result text */
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace; /* Different font for age result */
 }
 
 #result span {
-    color: #79c9e8; /* Different color for result span */
+    color: #f2f2f2; /* Light text color */
 }
 
-.quote-generator {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#quote-box {
-    text-align: center;
-    margin: 20px 0;
-}
-
-#quote {
+.quote-text {
     font-size: 1.5em;
     font-family: 'Georgia', serif; /* Different font for quotes */
     margin: 10px 0;
     text-align: center;
 }
 
-#author {
+.quote-author {
     font-size: 1.2em;
     font-family: 'Courier New', Courier, monospace; /* Different font for author names */
     margin: 5px 0;
-}
-
-button {
-    background-color: #7963f4;
-    color: #333;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #6046b6;
 }
