@@ -5,74 +5,107 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: #333333; /* Dark background color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
 .container {
-    width: 100%;
-    min-height: 100vh;
-    background: rgb(175, 10, 175); /* Solid violet color */
-    color: #f2ff66;
-    padding: 10px;
-}
-
-.calculator {
-    width: 100%;
-    max-width: 600px;
-    margin-left: 10%;
-    margin-top: 10%;
-}
-
-.calculator h1 {
-    font-size: 50px;
-}
-
-.calculator h1 span {
-    color: #fff946;
-}
-
-.input-box {
-    margin: 40px 0;
-    padding: 35px;
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    height: 90vh;
+    background-color: #444444; /* Slightly lighter dark color */
+    color: #f2f2f2; /* Light text color */
+    padding: 20px;
     border-radius: 10px;
-    background: rgba(7, 202, 40, 0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.half {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-right: 2px solid #7963f4;
+}
+
+.half:last-child {
+    border-right: none;
+}
+
+.title {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #f2f2f2; /* Matching color for both titles */
+}
+
+.input-box, #quote-box {
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
+    background: #555555; /* Lighter dark color for input and quote boxes */
     display: flex;
     align-items: center;
+    flex-direction: column;
 }
 
-.input-box input {
+.input-box input, #quote-box p {
     flex: 1;
-    margin-right: 20px;
+    margin-bottom: 20px;
     padding: 14px 20px;
-    border: 0;
+    border: 1px solid #7963f4;
     outline: 0;
     font-size: 18px;
     border-radius: 5px;
-    position: relative;
+    width: 100%;
+    color: #333333;
+    background-color: #f2f2f2;
 }
 
-.input-box button {
+.input-box input::-webkit-calendar-picker-indicator {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.input-box button, #new-quote {
     background: #7963f4;
     border: 0;
     outline: 0;
     padding: 15px 30px;
     border-radius: 5px;
     font-weight: 500;
-    color:#333;
+    color: #333333;
     cursor: pointer;
+    width: 100%;
 }
-.input-box input::-webkit-calendar-picker-indicator{
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: auto;
-    height: auto;
-    position: absolute;
-    background-position: calc(100% - 10px);
-    background-size: 30px;
-    cursor: pointer;
-}
-#result{
+
+#result {
     font-size: 20px;
+    font-family: 'Courier New', Courier, monospace; /* Different font for age result */
 }
-#result span{
-    color:aqua
+
+#result span {
+    color: #f2f2f2; /* Light text color */
+}
+
+.quote-text {
+    font-size: 1.5em;
+    font-family: 'Georgia', serif; /* Different font for quotes */
+    margin: 10px 0;
+    text-align: center;
+}
+
+.quote-author {
+    font-size: 1.2em;
+    font-family: 'Courier New', Courier, monospace; /* Different font for author names */
+    margin: 5px 0;
 }
